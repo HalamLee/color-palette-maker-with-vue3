@@ -11,7 +11,9 @@
         >
       </template>
     </div>
-    <button @click="goEditPage">수정하기</button>
+    <button @click="goPage">
+      {{ buttonText }}
+    </button>
   </main>
 </template>
 
@@ -29,13 +31,19 @@ onMounted(async () => {
 });
 
 const clickHandler = (color) => {
-  navigator.clipboard.writeText(color.color).then((res) => {
-    alert(color.color);
+  navigator.clipboard.writeText(color.color).then(() => {
+    alert(`${color.color} 복사되었습니다.`);
   });
 };
 
-const goEditPage = () => {
-  router.push('/edit');
+const buttonText = ref(localStorage.getItem('color') ? '수정하기' : '생성하기');
+
+const goPage = () => {
+  if (localStorage.getItem('color')) {
+    router.push('/edit');
+  } else {
+    router.push('/create');
+  }
 };
 </script>
 
