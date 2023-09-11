@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import PaletteView from '../views/PaletteView.vue';
+import PaletteEditView from '../views/PaletteEditView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +8,13 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: PaletteView,
+    },
+
+    {
+      path: '/edit',
+      name: 'paletteEditView',
+      component: PaletteEditView,
     },
   ],
 });
