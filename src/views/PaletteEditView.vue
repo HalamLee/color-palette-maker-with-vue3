@@ -87,8 +87,6 @@ const selectEmit = (id) => {
   }
 };
 
-console.log(localStorage.getItem('color'));
-
 const cancelHandler = () => {
   router.push('/');
 };
