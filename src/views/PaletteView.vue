@@ -1,0 +1,67 @@
+<template>
+  <main>
+    <h1>Color Palette</h1>
+    <div class="color-palette">
+      <template v-for="color in colors" :key="color.id">
+        <ColorBox
+          :id="color.id"
+          :color="color.color"
+          @click="clickHandler(color)"
+          >{{ color.color }}</ColorBox
+        >
+      </template>
+    </div>
+    <button @click="goEditPage">수정하기</button>
+  </main>
+</template>
+
+<script setup>
+import ColorBox from '../components/ColorBox.vue';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const colors = ref([]);
+
+onMounted(async () => {
+  const savedColors = localStorage.getItem('color');
+  colors.value = JSON.parse(savedColors);
+});
+
+const clickHandler = (color) => {
+  navigator.clipboard.writeText(color.color).then((res) => {
+    alert(color.color);
+  });
+};
+
+const goEditPage = () => {
+  router.push('/edit');
+};
+</script>
+
+<style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+h1 {
+  margin-bottom: 0px;
+}
+
+.color-palette {
+  & :not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+}
+
+button {
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(182, 228, 168);
+}
+</style>
