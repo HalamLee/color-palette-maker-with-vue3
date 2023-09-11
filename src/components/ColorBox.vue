@@ -1,0 +1,68 @@
+<template>
+  <div
+    @click="clickHandler"
+    :style="{ backgroundColor: computedColor }"
+    :class="{
+      'none-color': !computedColor,
+      selected: isSelected,
+    }">
+    <slot />
+  </div>
+</template>
+
+<script setup>
+import { computed, ref, watch } from 'vue';
+
+const props = defineProps({
+  id: Number,
+  color: String,
+  selected: Boolean,
+});
+
+const emit = defineEmits(['select']);
+
+const computedColor = ref(props.color || localStorage.getItem('color'));
+const isSelected = computed(() => props.selected);
+
+watch(
+  () => props.color,
+  (newColor) => {
+    computedColor.value = newColor;
+  }
+);
+
+const clickHandler = () => {
+  emit('select', props.id);
+  console.log('props.id', props.id);
+};
+</script>
+
+<style lang="scss" scoped>
+div {
+  width: 200px;
+  height: 50px;
+  border: 10px dashed transparent;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: transparent;
+  &:hover {
+    cursor: pointer;
+    color: white;
+  }
+}
+
+.none-color {
+  background-color: transparent;
+  border-color: rgb(135, 135, 170);
+  &:hover {
+    cursor: auto;
+  }
+}
+
+.selected {
+  border: 10px solid red;
+}
+</style>
