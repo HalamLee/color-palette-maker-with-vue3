@@ -1,7 +1,7 @@
 <template>
   <main>
     <h1>Color Palette</h1>
-    <div class="color-palette">
+    <div v-if="isSavedColors" class="color-palette">
       <template v-for="color in colors" :key="color.id">
         <ColorBox
           :id="color.id"
@@ -24,6 +24,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const colors = ref([]);
+const isSavedColors = Boolean(localStorage.getItem('color'));
 
 const savedColors = localStorage.getItem('color');
 colors.value = JSON.parse(savedColors);
