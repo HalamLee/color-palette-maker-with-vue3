@@ -30,7 +30,6 @@ watch(
   () => props.currentColor,
   (newColor) => {
     currentColor.value = newColor;
-    console.log('pureColor', props.currentColor);
   }
 );
 </script>

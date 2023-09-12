@@ -33,7 +33,6 @@ watch(
 
 const clickHandler = () => {
   emit('select', props.id);
-  console.log('props.id', props.id);
 };
 </script>
 

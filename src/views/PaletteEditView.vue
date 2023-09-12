@@ -63,9 +63,7 @@ watch(selected, (newSelected) => {
 });
 
 const changeColor = (color) => {
-  console.log('selected', selected.value);
   currentColor.value = color;
-  console.log('change color', color);
 
   // 선택한 ID에 해당하는 색상 객체를 찾음
   const selectedColor = colors.value.find(
