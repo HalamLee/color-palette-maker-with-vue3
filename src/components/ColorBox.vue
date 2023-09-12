@@ -4,9 +4,7 @@
     :style="{ backgroundColor: color }"
     :class="{
       selected: props.selected,
-    }">
-    <slot />
-  </div>
+    }"></div>
 </template>
 
 <script setup>
