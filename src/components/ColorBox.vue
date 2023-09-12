@@ -2,9 +2,7 @@
   <div
     @click="clickHandler"
     :style="{ backgroundColor: color }"
-    :class="{
-      selected: props.selected,
-    }"></div>
+    :class="{ selected: props.selected }"></div>
 </template>
 
 <script setup>
