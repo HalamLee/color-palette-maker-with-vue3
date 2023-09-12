@@ -1,9 +1,9 @@
 <template>
   <div
     @click="clickHandler"
-    :style="{ backgroundColor: computedColor }"
+    :style="{ backgroundColor: color }"
     :class="{
-      'none-color': !computedColor,
+      'none-color': !color,
       selected: isSelected,
     }">
     <slot />
@@ -21,13 +21,13 @@ const props = defineProps({
 
 const emit = defineEmits(['select']);
 
-const computedColor = ref(props.color || localStorage.getItem('color'));
+const color = ref(props.color);
 const isSelected = computed(() => props.selected);
 
 watch(
   () => props.color,
   (newColor) => {
-    computedColor.value = newColor;
+    color.value = newColor;
   }
 );
 
