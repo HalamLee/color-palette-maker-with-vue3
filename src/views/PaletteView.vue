@@ -38,7 +38,7 @@ const clickHandler = (color) => {
 const buttonText = ref(localStorage.getItem('color') ? '수정하기' : '생성하기');
 
 const goPage = () => {
-  if (localStorage.getItem('color')) {
+  if (isSavedColors) {
     router.push('/edit');
   } else {
     router.push('/create');
