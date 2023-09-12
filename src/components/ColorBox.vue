@@ -3,7 +3,6 @@
     @click="clickHandler"
     :style="{ backgroundColor: color }"
     :class="{
-      'none-color': !color,
       selected: isSelected,
     }">
     <slot />
@@ -50,14 +49,6 @@ div {
   &:hover {
     cursor: pointer;
     color: white;
-  }
-}
-
-.none-color {
-  background-color: transparent;
-  border-color: rgb(135, 135, 170);
-  &:hover {
-    cursor: auto;
   }
 }
 
