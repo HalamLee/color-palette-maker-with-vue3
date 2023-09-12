@@ -3,7 +3,7 @@
     @click="clickHandler"
     :style="{ backgroundColor: color }"
     :class="{
-      selected: isSelected,
+      selected: props.selected,
     }">
     <slot />
   </div>
@@ -21,7 +21,6 @@ const props = defineProps({
 const emit = defineEmits(['select']);
 
 const color = ref(props.color);
-const isSelected = computed(() => props.selected);
 
 watch(
   () => props.color,
