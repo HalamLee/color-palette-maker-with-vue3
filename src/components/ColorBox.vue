@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
   id: Number,
