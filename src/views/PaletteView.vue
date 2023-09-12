@@ -19,16 +19,14 @@
 
 <script setup>
 import ColorBox from '../components/ColorBox.vue';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const colors = ref([]);
 
-onMounted(async () => {
-  const savedColors = localStorage.getItem('color');
-  colors.value = JSON.parse(savedColors);
-});
+const savedColors = localStorage.getItem('color');
+colors.value = JSON.parse(savedColors);
 
 const clickHandler = (color) => {
   navigator.clipboard.writeText(color.color).then(() => {

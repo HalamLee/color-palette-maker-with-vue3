@@ -22,7 +22,7 @@
 <script setup>
 import ColorPicker from '../components/ColorPicker.vue';
 import ColorBox from '../components/ColorBox.vue';
-import { onMounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -30,29 +30,26 @@ const selected = ref(1); // 초기값으로 id 1번 선택
 const colors = ref([]);
 const currentColor = ref('');
 
-// 로컬 스토리지에서 저장된 데이터를 비동기적으로 불러와 초기 데이터로 설정
-onMounted(async () => {
-  const savedColors = localStorage.getItem('color');
-  if (savedColors) {
-    colors.value = JSON.parse(savedColors);
-    // 초기 currentColor 설정
-    const initialColor = colors.value.find(
-      (color) => color.id === selected.value
-    );
-    currentColor.value = initialColor ? initialColor.color : '';
-  } else {
-    // 저장된 데이터가 없을 경우 기본 데이터 설정
-    colors.value = [
-      { id: 1, color: '#13456b' },
-      { id: 2, color: '#456235' },
-      { id: 3, color: '#eeeeee' },
-      { id: 4, color: '#572999' },
-      { id: 5, color: '#222109' },
-    ];
-    // 초기 currentColor 설정
-    currentColor.value = colors.value[0].color;
-  }
-});
+const savedColors = localStorage.getItem('color');
+if (savedColors) {
+  colors.value = JSON.parse(savedColors);
+  // 초기 currentColor 설정
+  const initialColor = colors.value.find(
+    (color) => color.id === selected.value
+  );
+  currentColor.value = initialColor ? initialColor.color : '';
+} else {
+  // 저장된 데이터가 없을 경우 기본 데이터 설정
+  colors.value = [
+    { id: 1, color: '#13456b' },
+    { id: 2, color: '#456235' },
+    { id: 3, color: '#eeeeee' },
+    { id: 4, color: '#572999' },
+    { id: 5, color: '#222109' },
+  ];
+  // 초기 currentColor 설정
+  currentColor.value = colors.value[0].color;
+}
 
 // selected 값이 변경될 때 currentColor 업데이트
 watch(selected, (newSelected) => {
