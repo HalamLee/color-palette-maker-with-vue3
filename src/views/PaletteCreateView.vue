@@ -39,9 +39,7 @@ const currentColor = ref('');
 // selected 값이 변경될 때 currentColor 업데이트
 watch(selected, (newSelected) => {
   const selectedColor = colors.value.find((color) => color.id === newSelected);
-  if (selectedColor) {
-    currentColor.value = selectedColor.color;
-  }
+  currentColor.value = selectedColor.color;
 });
 
 const changeColor = (color) => {
