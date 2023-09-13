@@ -38,31 +38,29 @@ const currentColor = ref('');
 
 // selected 값이 변경될 때 currentColor 업데이트
 watch(selected, (newSelected) => {
-  const selectedColor = colors.value.find((color) => color.id === newSelected);
-  currentColor.value = selectedColor.color;
+  const selectedBox = colors.value.find((color) => color.id === newSelected);
+  currentColor.value = selectedBox.color;
 });
 
 const changeColor = (color) => {
   currentColor.value = color;
 
   // 선택한 ID에 해당하는 색상 객체를 찾음
-  const selectedColor = colors.value.find(
+  const selectedBox = colors.value.find(
     (colorObj) => colorObj.id === selected.value
   );
 
   // 색상 객체가 존재하면 해당 객체의 color 속성을 업데이트
-  if (selectedColor) {
-    selectedColor.color = color;
+  if (selectedBox) {
+    selectedBox.color = color;
     currentColor.value = color;
   }
 };
 
 const selectEmit = (id) => {
   selected.value = id;
-  const selectedColor = colors.value.find((color) => color.id === id);
-  if (selectedColor) {
-    currentColor.value = selectedColor.color;
-  }
+  const selectedBox = colors.value.find((color) => color.id === id);
+  currentColor.value = selectedBox.color;
 };
 
 const cancelHandler = () => {
